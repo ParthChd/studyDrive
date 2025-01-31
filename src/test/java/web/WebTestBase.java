@@ -1,18 +1,11 @@
 package web;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
-import org.testng.annotations.*;
 import org.apache.commons.lang3.RandomStringUtils;
-import utils.Constants;
-
-import java.io.File;
 import java.time.Duration;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class WebTestBase {
@@ -47,8 +40,8 @@ public class WebTestBase {
 
     public static FluentWait<WebDriver> createFluentWait(WebDriver driver) {
         return new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(50))
-                .pollingEvery(Duration.ofSeconds(1))
+                .withTimeout(Duration.ofSeconds(80))
+                .pollingEvery(Duration.ofSeconds(5))
                 .ignoring(NoSuchElementException.class, StaleElementReferenceException.class);
     }
 
@@ -66,13 +59,13 @@ public class WebTestBase {
 
     public void clickOnShadowElement() {
         try {
-            Thread.sleep(5000);
+            Thread.sleep(10000);
             WebElement shadowHost = driver.findElement(By.id("usercentrics-cmp-ui"));
             SearchContext shadowRoot = shadowHost.getShadowRoot();
             WebElement shadowButton = shadowRoot.findElement(By.cssSelector("button[id=accept]"));
             shadowButton.click();
-        } catch (NoSuchElementException | InterruptedException e) {
-            System.out.println("Page Reload took longer than expected.");
+        } catch (NoSuchElementException  | InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -89,7 +82,7 @@ public class WebTestBase {
         return result;
     }
 
-    public void getSpecficElementFromList(java.util.List<WebElement> webElement , String textToMatch) throws InterruptedException { //exception not required to be thrown
+    public void getSpecficElementFromList(java.util.List<WebElement> webElement, String textToMatch) throws InterruptedException { //exception not required to be thrown
         implicitWait();
         int elementsValue = webElement.size();
         for (int i = 0; i < elementsValue; i++) {

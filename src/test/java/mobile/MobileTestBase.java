@@ -5,7 +5,7 @@ import io.appium.java_client.service.local.AppiumDriverLocalService;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.*;
-import utils.DriverManager;
+
 import java.net.MalformedURLException;
 import java.util.logging.Logger;
 

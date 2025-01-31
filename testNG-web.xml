@@ -3,7 +3,7 @@
 <suite name="UI Automation Study Drive" parallel="classes" thread-count="3">
     <test name="Study drive Flow">
         <classes>
-            <class name="web.WebTest"/>
+            <class name="web.WebE2ETest"/>
         </classes>
     </test>
 </suite>

@@ -21,10 +21,10 @@ public class StudyDriveWebPage extends WebTestBase {
     @FindBy(css = "button[data-testid='top-bar-guest_btn-login']")
     WebElement buttonLogin;
 
-    @FindBy(css = "button[data-testid='top-bar-guest_btn-signup']")
+    @FindBy(css = "button[data-testid='top-bar-guest_btn-signup'] div div")
     WebElement buttonSignUp;
 
-    @FindBy(css = "i[class='btn-icon icon icon-arrow-right']")
+    @FindBy(xpath = "//div[@data-fe-test='btn-label']/div[@class='w-full pr-2']")
     WebElement buttonContinue;
 
     @FindBy(id = "study-button-type-student")
@@ -39,13 +39,13 @@ public class StudyDriveWebPage extends WebTestBase {
     @FindBy(xpath = "//input[@class='vs__search text-black-500']")
     WebElement inputStudyProgram;
 
-    @FindBy(id = "vs3__option-0")
+    @FindBy(xpath = "//li[@class='vs__dropdown-option'][1]//div//span")
     WebElement selectStudyProgram;
 
     @FindBy(xpath = "//input[@placeholder='Select your starting semester']")
     WebElement inputStartingSemester;
 
-    @FindBy(id = "vs4__option-0")
+    @FindBy(xpath = "//li[@class='vs__dropdown-option'][1]")
     WebElement selectSemester;
 
     @FindBy(xpath = "//button[@data-testid='profile-register-continue-button']/div")
@@ -118,38 +118,45 @@ public class StudyDriveWebPage extends WebTestBase {
     }
 
     public void SigningUp() throws InterruptedException {
-        waitForElementToBeClickable(driver, buttonSignUp);
+        createFluentWait(driver);
         clickOnElement(buttonSignUp);
         clickOnElement(textBoxEmail);
         String email = writeTextOnElementReturnValue(textBoxEmail, "parth" + generateRandomInteger() + "@outlook.com");
         clickOnElement(textBoxPassword);
         writeTextOnElement(textBoxPassword, Constants.password);
+        createFluentWait(driver);
         clickOnElement(buttonRegisterEmailPage);
         log.info("✅ Successfully signed up user");
     }
 
 
     public void verifyNewUseOnboardingr() throws InterruptedException {
-        waitForElementToBeClickable(driver, buttonContinue);
+        Thread.sleep(3000); //Need to add this because long load time
+        createFluentWait(driver);
         clickOnElement(buttonContinue);
+        createFluentWait(driver);
         clickOnElement(buttonStudy);
+        createFluentWait(driver);
         clickOnElement(inputUniversty);
+        createFluentWait(driver);
         writeTextOnElement(inputUniversty, Constants.universityName);
+        createFluentWait(driver);
         clickOnElement(selectUniversity);
-        waitForElementToBeClickable(driver, selectMajorOfStudy);
+        createFluentWait(driver);
         clickOnElement(selectMajorOfStudy);
+        createFluentWait(driver);
         clickOnElement(inputStudyProgram);
         clickOnElement(selectStudyProgram);
-        waitForElementToBeClickable(driver, inputStartingSemester);
+        createFluentWait(driver);
         clickOnElement(inputStartingSemester);
-        waitForElementToBeClickable(driver, selectSemester);
         clickOnElement(selectSemester);
         clickOnElement(buttonLetsGo);
-        log.info("✅ New user onboarding successful");
+        log.info("✅ New user onboarded successful");
     }
 
-    public boolean loginWithExistingUser() {
-        System.out.println(System.getProperty("user.dir"));
+    public void loginWithExistingUser() throws InterruptedException {
+        Thread.sleep(3000); //Need to add this because long load time
+        createFluentWait(driver);
         clickOnElement(buttonLogin);
         clickOnElement(textBoxEmail);
         writeTextOnElement(textBoxEmail, Constants.emailID);
@@ -157,14 +164,13 @@ public class StudyDriveWebPage extends WebTestBase {
         writeTextOnElement(textBoxPassword, Constants.password);
         clickOnElement(buttonLoginEmailPage);
         log.info("✅ Login with existing user successful");
-        return true;
     }
 
-    public void joinModuleAndUploadDocument(){
+    public void joinModuleAndPostComment() throws InterruptedException, AWTException {
         driver.navigate().refresh();
-        waitForElementToBeClickable(driver, searchDocModule);
+        createFluentWait(driver);
         clickOnElement(searchDocModule);
-        writeTextOnElement(searchDocModule, "987654321");
+        writeTextOnElement(searchDocModule, Constants.moduleName);
         searchDocModule.sendKeys(Keys.RETURN);
         driver.navigate().refresh();
         waitForElementToBeClickable(driver, selectModule);
@@ -183,21 +189,20 @@ public class StudyDriveWebPage extends WebTestBase {
                 writeTextOnElement(textBoxPassword, Constants.password);
                 clickOnElement(buttonRegisterEmailPage);
             }
-        } catch (NoSuchElementException e) {
-            System.out.println("Element not found, skipping click.");
-        }
+        } catch (NoSuchElementException e) {}
         clickOnElement(selectDiscussionTab);
         clickOnElement(textBoxAskAQuestion);
         writeTextOnElement(textBoxAskAQuestion, generateRandomString());
         clickOnElement(buttonSendQuestion);
+        log.info("✅ Posted comment successful");
     }
 
     public void logoutUser(String text) throws InterruptedException {
-        //Clicking on profile button
+        createFluentWait(driver);
         clickOnElement(imgProfileAvatar);
         //Need to add static wait because of page redirection.
         Thread.sleep(2000);
-        //Getting specific text from list od webElement.
         getSpecficElementFromList(listOfOptionOnProfileButton, text);
+        log.info("✅ User logout successful");
     }
 }

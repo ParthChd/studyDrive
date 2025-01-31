@@ -14,7 +14,6 @@ public class WebE2ETest extends DriverManager {
 
     @Test(priority = 1)
     public void should_able_to_onboard_and_logout() throws Exception {
-        Thread.sleep(2000);
         studyDriveWebPage.clickOnAcceptCookies();
         studyDriveWebPage.SigningUp();
         studyDriveWebPage.verifyNewUseOnboardingr();
@@ -22,8 +21,8 @@ public class WebE2ETest extends DriverManager {
     }
 
     @Test(priority = 2)
-    public void should_able_to_login_with_existing_user() throws Exception {
-        boolean result = studyDriveWebPage.loginWithExistingUser();
-        Assert.assertTrue(result);
+    public void should_able_to_login_with_existing_user_and_post_comment() throws Exception {
+        studyDriveWebPage.loginWithExistingUser();
+        studyDriveWebPage.joinModuleAndPostComment();
     }
 }
