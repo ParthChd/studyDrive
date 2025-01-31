@@ -33,10 +33,10 @@ public class StudyDriveWebPage extends WebTestBase {
     @FindBy(id = "vs1__option-1")
     WebElement selectUniversity;
 
-    @FindBy(xpath = "//li[@class='vs__dropdown-option'][4]")
+    @FindBy(xpath = "//li[@class='vs__dropdown-option'][1]")
     WebElement selectMajorOfStudy;
 
-    @FindBy(xpath = "//input[@class='vs__search text-black-500']")
+    @FindBy(css = "input[class='vs__search text-black-500']")
     WebElement inputStudyProgram;
 
     @FindBy(xpath = "//li[@class='vs__dropdown-option'][1]//div//span")
@@ -118,13 +118,11 @@ public class StudyDriveWebPage extends WebTestBase {
     }
 
     public void SigningUp() throws InterruptedException {
-        createFluentWait(driver);
         clickOnElement(buttonSignUp);
         clickOnElement(textBoxEmail);
         String email = writeTextOnElementReturnValue(textBoxEmail, "parth" + generateRandomInteger() + "@outlook.com");
         clickOnElement(textBoxPassword);
         writeTextOnElement(textBoxPassword, Constants.password);
-        createFluentWait(driver);
         clickOnElement(buttonRegisterEmailPage);
         log.info("✅ Successfully signed up user");
     }
@@ -132,22 +130,15 @@ public class StudyDriveWebPage extends WebTestBase {
 
     public void verifyNewUseOnboardingr() throws InterruptedException {
         Thread.sleep(3000); //Need to add this because long load time
-        createFluentWait(driver);
         clickOnElement(buttonContinue);
-        createFluentWait(driver);
         clickOnElement(buttonStudy);
-        createFluentWait(driver);
         clickOnElement(inputUniversty);
-        createFluentWait(driver);
         writeTextOnElement(inputUniversty, Constants.universityName);
-        createFluentWait(driver);
         clickOnElement(selectUniversity);
-        createFluentWait(driver);
         clickOnElement(selectMajorOfStudy);
-        createFluentWait(driver);
+        Thread.sleep(2000);
         clickOnElement(inputStudyProgram);
         clickOnElement(selectStudyProgram);
-        createFluentWait(driver);
         clickOnElement(inputStartingSemester);
         clickOnElement(selectSemester);
         clickOnElement(buttonLetsGo);
@@ -156,7 +147,6 @@ public class StudyDriveWebPage extends WebTestBase {
 
     public void loginWithExistingUser() throws InterruptedException {
         Thread.sleep(3000); //Need to add this because long load time
-        createFluentWait(driver);
         clickOnElement(buttonLogin);
         clickOnElement(textBoxEmail);
         writeTextOnElement(textBoxEmail, Constants.emailID);
@@ -198,7 +188,6 @@ public class StudyDriveWebPage extends WebTestBase {
     }
 
     public void logoutUser(String text) throws InterruptedException {
-        createFluentWait(driver);
         clickOnElement(imgProfileAvatar);
         //Need to add static wait because of page redirection.
         Thread.sleep(2000);

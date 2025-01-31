@@ -22,14 +22,17 @@ public class WebTestBase {
     // ********** Common Element Actions **********
 
     public void clickOnElement(WebElement webElement) {
+        createFluentWait(driver);
         webElement.click();
     }
 
     public void writeTextOnElement(WebElement webElement, String value) {
+        createFluentWait(driver);
         webElement.sendKeys(value);
     }
 
     public String writeTextOnElementReturnValue(WebElement webElement, String value) {
+        createFluentWait(driver);
         webElement.sendKeys(value);
         return value;
     }
@@ -59,7 +62,7 @@ public class WebTestBase {
 
     public void clickOnShadowElement() {
         try {
-            Thread.sleep(10000);
+            Thread.sleep(9000);
             WebElement shadowHost = driver.findElement(By.id("usercentrics-cmp-ui"));
             SearchContext shadowRoot = shadowHost.getShadowRoot();
             WebElement shadowButton = shadowRoot.findElement(By.cssSelector("button[id=accept]"));
@@ -67,19 +70,6 @@ public class WebTestBase {
         } catch (NoSuchElementException  | InterruptedException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    public boolean verifyElementIsVisibleInDom(WebElement webElement) {
-        boolean result = false;
-        try {
-            implicitWait();
-            if (webElement.isDisplayed()) {
-                result = true;
-            }
-        } catch (NoSuchElementException e) {
-            result = false;
-        }
-        return result;
     }
 
     public void getSpecficElementFromList(java.util.List<WebElement> webElement, String textToMatch) throws InterruptedException { //exception not required to be thrown
