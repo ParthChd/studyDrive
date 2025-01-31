@@ -1,0 +1,8 @@
+# Ignore build output directory
+target/
+
+# Ignore Allure results directory
+allure-results/
+
+# Ignore IDEA project files
+.idea/
