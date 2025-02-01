@@ -27,7 +27,7 @@ This project automates key test cases with the following features:
 3️⃣ Run the test
 > Run chrome driver locally
 > 
-> Right click on testng.xml and click Run '.../testng.xml'
+> Right click on testng-web.xml and click Run '.../testng-web.xml'
 
 #### 📌 StudyDrive Test Cases
 
