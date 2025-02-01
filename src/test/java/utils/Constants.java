@@ -6,4 +6,5 @@ public interface Constants {
     String emailIDWrong =" test@gmail";
     String password = "Test@12345";
     String universityName = "Berlin";
+    String moduleName = "987654321";
 }

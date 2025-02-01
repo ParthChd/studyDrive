@@ -33,7 +33,7 @@ public class DriverManager {
         ChromeOptions options = new ChromeOptions();
         options.setExperimentalOption("prefs", prefs);
         //If you want to run on headless browser uncomment the below command.
-        cO.setHeadless(true);
+        //cO.setHeadless(true);
         driver = new ChromeDriver(cO);
         driver.manage().deleteAllCookies();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);

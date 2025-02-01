@@ -1,1 +1,0 @@
-{"uuid":"f9878096-86a7-473a-a581-be0cfd7ed41a","name":"mobile.TestBase.windup","children":["1d5b67d5-f953-48c1-9470-dc63fcec5468"],"description":"","befores":[],"afters":[{"name":"windup","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1738337041326,"stop":1738337041576}],"start":1738337041326,"stop":1738337041576}
