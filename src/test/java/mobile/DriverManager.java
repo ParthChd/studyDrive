@@ -1,4 +1,4 @@
-package utils;
+package mobile;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
@@ -18,7 +18,6 @@ public class DriverManager {
         cap.setCapability(MobileCapabilityType.DEVICE_NAME, "TestPhone");
         cap.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
         cap.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
-        //cap.setCapability("settings[allowInsecure]", "adb_shell");
         driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), cap);
         return driver;
     }

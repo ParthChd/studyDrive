@@ -1,1 +1,0 @@
-{"uuid":"f55efac0-c7d2-41ac-9a6e-8d635219a8b6","name":"mobile.TestBase.initdriver","children":["51eca01f-7342-4012-9260-e915160e5340"],"description":"","befores":[{"name":"initdriver","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1738344433726,"stop":1738344440016}],"afters":[],"start":1738344433726,"stop":1738344440016}
